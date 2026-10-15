@@ -17,6 +17,9 @@
   },
   "tools": {
     "draw": "Desenhar",
+    "pencil": "Lápis",
+    "pen": "Caneta",
+    "platignum": "Canetinha Platignum",
     "brush": "Pincel",
     "magicBrush": "Arco-íris Mágico",
     "glowBrush": "Brilho Neon",

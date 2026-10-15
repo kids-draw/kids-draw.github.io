@@ -17,6 +17,9 @@
   },
   "tools": {
     "draw": "Malen",
+    "pencil": "Bleistift",
+    "pen": "Stift",
+    "platignum": "Platignum Filzstift",
     "brush": "Pinsel",
     "magicBrush": "Regenbogen-Magie",
     "glowBrush": "Neon-Glanz",

@@ -17,6 +17,9 @@
   },
   "tools": {
     "draw": "Dessiner",
+    "pencil": "Crayon",
+    "pen": "Stylo",
+    "platignum": "Feutre Platignum",
     "brush": "Pinceau",
     "magicBrush": "Magie Arc-en-ciel",
     "glowBrush": "Néon Lumineux",

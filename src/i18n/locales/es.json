@@ -17,6 +17,9 @@
   },
   "tools": {
     "draw": "Dibujar",
+    "pencil": "Lápiz",
+    "pen": "Bolígrafo",
+    "platignum": "Rotulador Platignum",
     "brush": "Pincel",
     "magicBrush": "Arcoíris Mágico",
     "glowBrush": "Brillo Neón",

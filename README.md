@@ -10,7 +10,13 @@
 ## 🚀 Features
 
 - 🖍️ **Magic Canvas**: Responsive HTML5 Canvas with pointer events supporting both mouse, stylus, and touch gestures. Automatically prevents screen scrolling while drawing.
-- 🌈 **Rainbow & Neon Glow Brushes**: Fun magic rainbow brush that cycles vibrant hues and glowing neon pen for blackboard art.
+- ✏️ **Diverse Drawing Instruments**:
+  - **Pencil**: Natural semi-transparent graphite texture for realistic sketching and soft shading.
+  - **Pen**: Crisp, fluid, solid ink lines for clean writing and precise drawing.
+  - **Platignum**: Saturated felt-tip coloring marker with bold fiber-tip ink (inspired by classic school coloring pens).
+  - **Brush**: Smooth, rich paint strokes.
+  - **Rainbow Magic**: Dynamic hue-cycling sparkle brush that kids love.
+  - **Neon Glow Art**: Luminous electric glow effect for blackboard drawings.
 - 🧽 **Kid-Friendly Tools**: Oversized brush size selectors (Small, Medium, Large, Jumbo), soft eraser, undo/redo, and accidental-clear protection.
 - 🎨 **Design System Color Palette**: Preloaded with `#ADED92` (Soft Mint), `#46EC67` (Neon Green), `#12EDAB` (Aqua Cyan), `#1E7D94` (Deep Ocean), plus vibrant child-friendly colors and a native color wheel.
 - 💾 **Instant Client-Side PNG Export**: Saves artwork directly to the device with a celebratory confetti blast—zero data sent to servers!

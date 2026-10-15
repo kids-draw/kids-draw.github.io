@@ -1,6 +1,9 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import confetti from 'canvas-confetti';
 import { 
+  Pencil,
+  Pen,
+  Highlighter,
   Paintbrush, 
   Sparkles, 
   Eraser, 
@@ -17,6 +20,9 @@ import {
 
 interface ToolTranslations {
   draw: string;
+  pencil: string;
+  pen: string;
+  platignum: string;
   brush: string;
   magicBrush: string;
   glowBrush: string;
@@ -70,7 +76,7 @@ const BRUSH_SIZES = [
   { size: 48, dotSize: 30, labelKey: 'sizeJumbo' as const },
 ];
 
-type ToolType = 'brush' | 'magic' | 'glow' | 'eraser';
+type ToolType = 'pencil' | 'pen' | 'platignum' | 'brush' | 'magic' | 'glow' | 'eraser';
 
 export default function DrawBoard({ translations: t }: DrawBoardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -241,7 +247,8 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
 
     if (activeTool === 'eraser') {
       ctx.globalCompositeOperation = 'destination-out';
-      ctx.lineWidth = scaledSize * 1.5;
+      ctx.globalAlpha = 1.0;
+      ctx.lineWidth = scaledSize * 1.6;
       ctx.shadowBlur = 0;
       ctx.shadowColor = 'transparent';
       return;
@@ -249,22 +256,46 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
 
     ctx.globalCompositeOperation = 'source-over';
 
-    if (activeTool === 'magic') {
+    if (activeTool === 'pencil') {
+      // Soft graphite sketch pencil (fine, natural semi-transparent graphite texture)
+      ctx.strokeStyle = currentColor;
+      ctx.globalAlpha = 0.72;
+      ctx.lineWidth = Math.max(2, scaledSize * 0.55);
+      ctx.shadowBlur = 0;
+      ctx.shadowColor = 'transparent';
+    } else if (activeTool === 'pen') {
+      // Crisp ink ballpoint / gel pen (solid, precise, fluid line)
+      ctx.strokeStyle = currentColor;
+      ctx.globalAlpha = 1.0;
+      ctx.lineWidth = Math.max(3, scaledSize * 0.8);
+      ctx.shadowBlur = 0;
+      ctx.shadowColor = 'transparent';
+    } else if (activeTool === 'platignum') {
+      // Platignum / Felt-tip coloring marker (bold, saturated fiber-tip ink)
+      ctx.strokeStyle = currentColor;
+      ctx.globalAlpha = 0.92;
+      ctx.lineWidth = Math.max(6, scaledSize * 1.35);
+      ctx.shadowBlur = isDarkMode ? scaledSize * 0.25 : 0;
+      ctx.shadowColor = isDarkMode ? currentColor : 'transparent';
+    } else if (activeTool === 'magic') {
       // Rainbow magic brush
       rainbowHueRef.current = (rainbowHueRef.current + 7) % 360;
       ctx.strokeStyle = `hsl(${rainbowHueRef.current}, 95%, 55%)`;
+      ctx.globalAlpha = 1.0;
       ctx.lineWidth = scaledSize;
       ctx.shadowBlur = isDarkMode ? scaledSize * 0.8 : 0;
       ctx.shadowColor = `hsl(${rainbowHueRef.current}, 95%, 55%)`;
     } else if (activeTool === 'glow') {
       // Neon Glow Pen
       ctx.strokeStyle = currentColor;
+      ctx.globalAlpha = 1.0;
       ctx.lineWidth = scaledSize;
       ctx.shadowBlur = scaledSize * 1.4;
       ctx.shadowColor = currentColor;
     } else {
       // Standard Vibrant Brush
       ctx.strokeStyle = currentColor;
+      ctx.globalAlpha = 1.0;
       ctx.lineWidth = scaledSize;
       ctx.shadowBlur = isDarkMode ? scaledSize * 0.4 : 0;
       ctx.shadowColor = isDarkMode ? currentColor : 'transparent';
@@ -556,21 +587,66 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
           {/* Top Row: Primary Tools, Brush Sizes, Clear, and Prominent Save CTA */}
           <div className="flex items-center justify-between gap-1.5 sm:gap-3 flex-wrap">
             
-            {/* Tool Selector: Brush, Magic, Glow, Eraser */}
-            <div className="flex items-center gap-1 sm:gap-2 bg-paper-warm/60 dark:bg-slate-800/80 p-1 rounded-xl sm:rounded-2xl border border-deep_ocean/10 dark:border-slate-700">
+            {/* Tool Selector: Pencil, Pen, Platignum, Brush, Magic, Glow, Eraser */}
+            <div className="flex items-center gap-1 sm:gap-1.5 bg-paper-warm/60 dark:bg-slate-800/80 p-1 rounded-xl sm:rounded-2xl border border-deep_ocean/10 dark:border-slate-700 overflow-x-auto scrollbar-none max-w-full">
+              {/* Pencil */}
+              <button
+                type="button"
+                onClick={() => setActiveTool('pencil')}
+                title={t.pencil}
+                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
+                  activeTool === 'pencil'
+                    ? 'bg-slate-700 text-white shadow-md scale-105'
+                    : 'text-deep_ocean dark:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-700'
+                }`}
+              >
+                <Pencil className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
+                <span className="hidden lg:inline">{t.pencil}</span>
+              </button>
+
+              {/* Pen */}
+              <button
+                type="button"
+                onClick={() => setActiveTool('pen')}
+                title={t.pen}
+                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
+                  activeTool === 'pen'
+                    ? 'bg-deep_ocean text-white shadow-md scale-105'
+                    : 'text-deep_ocean dark:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-700'
+                }`}
+              >
+                <Pen className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
+                <span className="hidden lg:inline">{t.pen}</span>
+              </button>
+
+              {/* Platignum (Felt-tip Marker) */}
+              <button
+                type="button"
+                onClick={() => setActiveTool('platignum')}
+                title={t.platignum}
+                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
+                  activeTool === 'platignum'
+                    ? 'bg-emerald-600 text-white shadow-md scale-105'
+                    : 'text-deep_ocean dark:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-700'
+                }`}
+              >
+                <Highlighter className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
+                <span className="hidden lg:inline">{t.platignum}</span>
+              </button>
+
               {/* Regular Brush */}
               <button
                 type="button"
                 onClick={() => setActiveTool('brush')}
                 title={t.brush}
-                className={`flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
                   activeTool === 'brush'
-                    ? 'bg-deep_ocean text-white shadow-md scale-105'
+                    ? 'bg-blue-600 text-white shadow-md scale-105'
                     : 'text-deep_ocean dark:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-700'
                 }`}
               >
                 <Paintbrush className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
-                <span className="hidden sm:inline">{t.brush}</span>
+                <span className="hidden lg:inline">{t.brush}</span>
               </button>
 
               {/* Rainbow Magic Brush */}
@@ -578,14 +654,14 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
                 type="button"
                 onClick={() => setActiveTool('magic')}
                 title={t.magicBrush}
-                className={`flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
                   activeTool === 'magic'
                     ? 'bg-gradient-to-r from-pink-500 via-yellow-400 to-cyan-400 text-white shadow-md scale-105'
                     : 'text-deep_ocean dark:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-700'
                 }`}
               >
                 <Sparkles className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5] text-amber-300 animate-wiggle" />
-                <span className="hidden sm:inline">{t.magicBrush}</span>
+                <span className="hidden lg:inline">{t.magicBrush}</span>
               </button>
 
               {/* Glow Art Brush */}
@@ -593,14 +669,14 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
                 type="button"
                 onClick={() => setActiveTool('glow')}
                 title={t.glowBrush}
-                className={`flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
                   activeTool === 'glow'
                     ? 'bg-gradient-to-r from-neon_green to-aqua_cyan text-deep_ocean font-extrabold shadow-md scale-105'
                     : 'text-deep_ocean dark:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-700'
                 }`}
               >
                 <SunMedium className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
-                <span className="hidden sm:inline">{t.glowBrush}</span>
+                <span className="hidden lg:inline">{t.glowBrush}</span>
               </button>
 
               {/* Eraser */}
@@ -608,14 +684,14 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
                 type="button"
                 onClick={() => setActiveTool('eraser')}
                 title={t.eraser}
-                className={`flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
                   activeTool === 'eraser'
                     ? 'bg-pink-500 text-white shadow-md scale-105'
                     : 'text-deep_ocean dark:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-700'
                 }`}
               >
                 <Eraser className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
-                <span className="hidden sm:inline">{t.eraser}</span>
+                <span className="hidden lg:inline">{t.eraser}</span>
               </button>
             </div>
 

@@ -17,6 +17,9 @@
   },
   "tools": {
     "draw": "Draw",
+    "pencil": "Pencil",
+    "pen": "Pen",
+    "platignum": "Platignum",
     "brush": "Brush",
     "magicBrush": "Rainbow Magic",
     "glowBrush": "Glow Art",

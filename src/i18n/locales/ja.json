@@ -17,6 +17,9 @@
   },
   "tools": {
     "draw": "描く",
+    "pencil": "えんぴつ",
+    "pen": "ペン",
+    "platignum": "マーカー (Platignum)",
     "brush": "ブラシ",
     "magicBrush": "にじいろマジック",
     "glowBrush": "ネオンひかるペン",
