@@ -1,0 +1,229 @@
+---
+import { SUPPORTED_LANGUAGES, type SupportedLanguageCode } from '../i18n/languages';
+import { getTranslations, getLocalizedPath } from '../i18n/utils';
+
+interface Props {
+  currentLocale: string;
+}
+
+const { currentLocale } = Astro.props;
+const t = getTranslations(currentLocale);
+const currentPath = Astro.url.pathname;
+const activeLang = SUPPORTED_LANGUAGES.find((l) => l.code === currentLocale) || SUPPORTED_LANGUAGES[0];
+---
+
+<header class="sticky top-0 z-40 w-full select-none bg-paper-light/95 dark:bg-slate-900/95 backdrop-blur-md border-b-2 border-deep_ocean/15 dark:border-slate-800 transition-colors duration-200">
+  <div class="max-w-7xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2">
+    
+    <!-- Left: Brand Logo -->
+    <a 
+      href={getLocalizedPath('/', currentLocale)} 
+      class="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-deep_ocean rounded-xl p-1"
+      aria-label="KidsDraw Home"
+    >
+      <!-- Playful Logo Icon -->
+      <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-soft_mint via-aqua_cyan to-neon_green flex items-center justify-center shadow-sm group-hover:scale-105 group-active:scale-95 transition-transform duration-200 border-2 border-deep_ocean/20 dark:border-neon_green/40">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-deep_ocean dark:text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m18 5-3-3L6 11l-2 7 7-2 9-9z"></path>
+          <path d="m14 8 3 3"></path>
+          <circle cx="20" cy="4" r="1.5" fill="currentColor"></circle>
+          <path d="M3 21h3"></path>
+        </svg>
+      </div>
+
+      <!-- Brand Typography -->
+      <div class="flex flex-col">
+        <div class="flex items-baseline">
+          <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-deep_ocean dark:text-soft_mint drop-shadow-sm font-kids">
+            Kids<span class="text-neon_green dark:text-aqua_cyan">Draw</span>
+          </span>
+          <span class="ml-1 text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-soft_mint/50 dark:bg-slate-800 text-deep_ocean dark:text-soft_mint hidden lg:inline-block border border-deep_ocean/20 dark:border-slate-700">
+            Magic Board
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Center / Pill: Kid Safe Badge (Desktop Only) -->
+    <div class="hidden xl:flex items-center gap-1.5 px-3 py-1 rounded-full bg-soft_mint/30 dark:bg-slate-800/80 border border-deep_ocean/15 dark:border-slate-700 text-xs font-bold text-deep_ocean dark:text-aqua_cyan">
+      <svg class="w-3.5 h-3.5 text-neon_green" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5zm-2 16l-4-4 1.41-1.41L10 15.17l6.59-6.59L18 10l-8 8z"/>
+      </svg>
+      <span>{t.nav.privacyBadge}</span>
+    </div>
+
+    <!-- Right Controls: Strictly collapses to ICONS ONLY on mobile/tablet -->
+    <div class="flex items-center gap-1.5 sm:gap-2.5">
+
+      <!-- 7-Language Selector Dropdown -->
+      <div class="relative" id="lang-dropdown-container">
+        <button
+          type="button"
+          id="lang-dropdown-btn"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          aria-label={t.nav.selectLang}
+          class="h-9 sm:h-10 px-2 sm:px-3 rounded-xl bg-white dark:bg-slate-800 border-2 border-deep_ocean/20 dark:border-slate-700 text-deep_ocean dark:text-white font-bold text-xs sm:text-sm flex items-center gap-1 sm:gap-2 shadow-sm hover:border-deep_ocean/50 dark:hover:border-aqua_cyan focus:outline-none focus:ring-2 focus:ring-deep_ocean transition-all cursor-pointer"
+        >
+          <span class="text-base sm:text-lg leading-none" role="img" aria-hidden="true">{activeLang.flagEmoji}</span>
+          <!-- Full label on desktop, hidden on mobile/tablet (strictly icons only) -->
+          <span class="hidden md:inline font-semibold">{activeLang.label}</span>
+          <svg class="w-3.5 h-3.5 transition-transform duration-200 text-deep_ocean/70 dark:text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div
+          id="lang-menu"
+          class="hidden absolute right-0 mt-2 w-48 rounded-2xl bg-white dark:bg-slate-800 border-2 border-deep_ocean/20 dark:border-slate-700 shadow-xl py-2 z-50 overflow-hidden transform opacity-0 scale-95 transition-all duration-150 ease-out origin-top-right"
+          role="listbox"
+        >
+          <div class="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-deep_ocean/60 dark:text-slate-400 border-b border-deep_ocean/10 dark:border-slate-700/60 mb-1">
+            {t.nav.selectLang}
+          </div>
+          {SUPPORTED_LANGUAGES.map((lang) => {
+            const isCurrent = lang.code === currentLocale;
+            const targetUrl = getLocalizedPath(currentPath, lang.code);
+            return (
+              <a
+                href={targetUrl}
+                role="option"
+                aria-selected={isCurrent}
+                class={`flex items-center justify-between px-3.5 py-2 text-xs sm:text-sm font-semibold transition-colors ${
+                  isCurrent
+                    ? 'bg-soft_mint/30 dark:bg-slate-700/80 text-deep_ocean dark:text-soft_mint font-bold'
+                    : 'text-gray-700 dark:text-slate-200 hover:bg-soft_mint/15 dark:hover:bg-slate-700/50'
+                }`}
+              >
+                <span class="flex items-center gap-2.5">
+                  <span class="text-base sm:text-lg" role="img">{lang.flagEmoji}</span>
+                  <span>{lang.label}</span>
+                </span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-gray-100 dark:bg-slate-900 text-gray-500 dark:text-slate-400 uppercase">
+                  {lang.badge}
+                </span>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Light / Dark Mode Switcher -->
+      <button
+        type="button"
+        id="theme-toggle-btn"
+        aria-label={t.nav.toggleTheme}
+        title={t.nav.toggleTheme}
+        class="h-9 w-9 sm:h-10 sm:w-10 rounded-xl bg-white dark:bg-slate-800 border-2 border-deep_ocean/20 dark:border-slate-700 text-deep_ocean dark:text-soft_mint flex items-center justify-center shadow-sm hover:border-deep_ocean/50 dark:hover:border-soft_mint focus:outline-none focus:ring-2 focus:ring-deep_ocean transition-all cursor-pointer"
+      >
+        <!-- Sun Icon (shown in dark mode) -->
+        <svg class="w-5 h-5 hidden dark:block text-soft_mint transition-transform hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+
+        <!-- Moon Icon (shown in light mode) -->
+        <svg class="w-5 h-5 block dark:hidden text-deep_ocean transition-transform hover:-rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+
+      <!-- Support Developer CTA Button (Mobile: Icon Only; Desktop: Icon + Text) -->
+      <a
+        href="https://buymeacoffee.com/kisharadilz"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={t.nav.supportFull}
+        title={t.nav.supportFull}
+        class="h-9 sm:h-10 px-2.5 sm:px-4 rounded-xl bg-gradient-to-r from-neon_green via-aqua_cyan to-soft_mint text-deep_ocean font-extrabold text-xs sm:text-sm flex items-center gap-1.5 shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all border-2 border-deep_ocean/30 dark:border-transparent group"
+      >
+        <!-- Coffee Cup / Heart Icon -->
+        <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 text-deep_ocean group-hover:rotate-12 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+          <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+          <line x1="6" y1="1" x2="6" y2="4"></line>
+          <line x1="10" y1="1" x2="10" y2="4"></line>
+          <line x1="14" y1="1" x2="14" y2="4"></line>
+        </svg>
+        
+        <!-- Strict Mobile collapse: Label strictly hidden on mobile/tablet, visible on desktop -->
+        <span class="hidden md:inline font-kids tracking-wide">
+          {t.nav.support}
+        </span>
+      </a>
+
+    </div>
+  </div>
+</header>
+
+<script>
+  // Language Dropdown Interactivity
+  const container = document.getElementById('lang-dropdown-container');
+  const btn = document.getElementById('lang-dropdown-btn');
+  const menu = document.getElementById('lang-menu');
+
+  if (container && btn && menu) {
+    const toggleMenu = (open?: boolean) => {
+      const isExpanded = open !== undefined ? open : btn.getAttribute('aria-expanded') === 'true';
+      const willOpen = !isExpanded;
+      
+      btn.setAttribute('aria-expanded', String(willOpen));
+      if (willOpen) {
+        menu.classList.remove('hidden');
+        requestAnimationFrame(() => {
+          menu.classList.remove('opacity-0', 'scale-95');
+          menu.classList.add('opacity-100', 'scale-100');
+        });
+      } else {
+        menu.classList.remove('opacity-100', 'scale-100');
+        menu.classList.add('opacity-0', 'scale-95');
+        setTimeout(() => {
+          if (btn.getAttribute('aria-expanded') === 'false') {
+            menu.classList.add('hidden');
+          }
+        }, 150);
+      }
+    };
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      toggleMenu(isOpen);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!container.contains(e.target as Node)) {
+        if (btn.getAttribute('aria-expanded') === 'true') {
+          toggleMenu(true);
+        }
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        toggleMenu(true);
+        btn.focus();
+      }
+    });
+  }
+
+  // Theme Toggle Interactivity
+  const themeBtn = document.getElementById('theme-toggle-btn');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      
+      // Notify react island if canvas background needs adjustment
+      window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme: isDark ? 'dark' : 'light' } }));
+    });
+  }
+</script>

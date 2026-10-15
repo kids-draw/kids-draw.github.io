@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DrawBoard from '../components/DrawBoard';
+import { getTranslations } from '../i18n/utils';
+
+const currentLocale = 'en';
+const t = getTranslations(currentLocale);
+---
+
+<Layout currentLocale={currentLocale}>
+  <DrawBoard client:load translations={t.tools} currentLocale={currentLocale} />
+</Layout>

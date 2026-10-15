@@ -1,0 +1,16 @@
+{
+  "name": "KidsDraw | Free Online Magic Drawing Board",
+  "short_name": "KidsDraw",
+  "description": "An ultra-minimal, 100% client-side web application for kids.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDFBF7",
+  "theme_color": "#1E7D94",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

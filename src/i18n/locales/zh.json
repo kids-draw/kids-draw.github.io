@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "title": "KidsDraw | 专为儿童打造的免费在线魔法画板",
+    "description": "极简、100%纯前端运行的儿童趣味魔法画板。无干扰设计、即时一键导出高清PNG，无需注册、零数据上传，完全保护隐私与儿童安全。",
+    "keywords": "儿童画板, 在线画画, 魔法画板, 幼儿涂鸦, 免费儿童涂色绘画"
+  },
+  "nav": {
+    "brand": "KidsDraw",
+    "tagline": "魔法画板",
+    "support": "赞赏",
+    "supportFull": "支持开发者",
+    "themeLight": "画纸模式",
+    "themeDark": "荧光黑板",
+    "toggleTheme": "切换主题",
+    "selectLang": "语言",
+    "privacyBadge": "100% 隐私安全"
+  },
+  "tools": {
+    "draw": "画画",
+    "brush": "画笔",
+    "magicBrush": "彩虹魔法笔",
+    "glowBrush": "荧光发光笔",
+    "eraser": "橡皮擦",
+    "size": "粗细",
+    "sizeSmall": "细",
+    "sizeMedium": "中",
+    "sizeLarge": "粗",
+    "sizeJumbo": "特粗",
+    "colorPicker": "更多颜色",
+    "undo": "撤销",
+    "redo": "重做",
+    "clear": "清空",
+    "clearTitle": "开始一幅新画吗？",
+    "clearConfirm": "是的，清空！",
+    "clearCancel": "继续画画",
+    "save": "保存画作",
+    "saving": "保存中...",
+    "downloadSuccess": "已保存到您的设备！",
+    "fullscreen": "全屏模式",
+    "exitFullscreen": "退出全屏"
+  }
+}

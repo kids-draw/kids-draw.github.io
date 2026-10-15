@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-soft-mint: #ADED92;
+    --color-neon-green: #46EC67;
+    --color-aqua-cyan: #12EDAB;
+    --color-deep-ocean: #1E7D94;
+    --bg-paper: #FDFBF7;
+    --canvas-bg: #FFFFFF;
+  }
+
+  .dark {
+    --bg-paper: #0F172A;
+    --canvas-bg: #111827;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    font-family: 'Fredoka', 'Quicksand', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Custom playful button classes */
+.btn-playful {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 0 0 rgba(30, 125, 148, 0.35);
+}
+
+.btn-playful:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 0 rgba(30, 125, 148, 0.4);
+}
+
+.btn-playful:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 0 rgba(30, 125, 148, 0.35);
+}
+
+.dark .btn-playful {
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.6);
+}
+
+.dark .btn-playful:active {
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.6);
+}
+
+/* Tool pulse animation */
+@keyframes softPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.pulse-active {
+  animation: softPulse 1.5s infinite ease-in-out;
+}
+
+/* Touch drawing lock */
+canvas {
+  touch-action: none;
+}

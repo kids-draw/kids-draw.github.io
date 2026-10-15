@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="brushGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#46EC67" />
+      <stop offset="50%" stop-color="#12EDAB" />
+      <stop offset="100%" stop-color="#ADED92" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#1E7D94" flood-opacity="0.3" />
+    </filter>
+  </defs>
+  <!-- Background Disc -->
+  <rect width="100" height="100" rx="28" fill="#1E7D94" />
+  
+  <!-- Magic Canvas Paper -->
+  <rect x="14" y="14" width="72" height="72" rx="18" fill="#FDFBF7" filter="url(#shadow)" />
+  
+  <!-- Magic Brush / Pencil -->
+  <g transform="translate(18, 18)">
+    <path d="M42 6 L58 22 L24 56 L8 56 L8 40 Z" fill="url(#brushGrad)" stroke="#1E7D94" stroke-width="3" stroke-linejoin="round" />
+    <polygon points="8,56 8,46 18,56" fill="#FF4365" />
+    <circle cx="56" cy="10" r="4" fill="#FFE74C" />
+    <path d="M38 10 L54 26" stroke="#1E7D94" stroke-width="2" />
+    
+    <!-- Sparkles -->
+    <path d="M12 18 Q14 12 20 10 Q14 8 12 2 Q10 8 4 10 Q10 12 12 18 Z" fill="#46EC67" />
+    <path d="M48 44 Q50 38 56 36 Q50 34 48 28 Q46 34 40 36 Q46 38 48 44 Z" fill="#12EDAB" />
+  </g>
+</svg>

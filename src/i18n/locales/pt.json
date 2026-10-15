@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "title": "KidsDraw | Quadro Mágico de Desenho Grátis para Crianças",
+    "description": "Um aplicativo web ultra minimalista e 100% no navegador para crianças. Quadro de desenho HTML5 com download PNG instantâneo, sem envio para servidores e total privacidade.",
+    "keywords": "quadro de desenho infantil, desenhar online crianças, lousa mágica, app de desenho infantil"
+  },
+  "nav": {
+    "brand": "KidsDraw",
+    "tagline": "Quadro Mágico",
+    "support": "Apoiar",
+    "supportFull": "Apoiar o Desenvolvedor",
+    "themeLight": "Modo Papel",
+    "themeDark": "Modo Neon",
+    "toggleTheme": "Mudar Tema",
+    "selectLang": "Idioma",
+    "privacyBadge": "100% Privado e Seguro"
+  },
+  "tools": {
+    "draw": "Desenhar",
+    "brush": "Pincel",
+    "magicBrush": "Arco-íris Mágico",
+    "glowBrush": "Brilho Neon",
+    "eraser": "Borracha",
+    "size": "Tamanho",
+    "sizeSmall": "Pequeno",
+    "sizeMedium": "Médio",
+    "sizeLarge": "Grande",
+    "sizeJumbo": "Gigante",
+    "colorPicker": "Mais Cores",
+    "undo": "Desfazer",
+    "redo": "Refazer",
+    "clear": "Limpar",
+    "clearTitle": "Começar um novo desenho?",
+    "clearConfirm": "Sim, Limpar!",
+    "clearCancel": "Continuar Desenho",
+    "save": "Salvar Desenho",
+    "saving": "Salvando...",
+    "downloadSuccess": "Salvo no seu dispositivo!",
+    "fullscreen": "Tela Cheia",
+    "exitFullscreen": "Sair"
+  }
+}

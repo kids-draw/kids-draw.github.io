@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "title": "KidsDraw | 子供向け無料の魔法のお絵かきボード",
+    "description": "子供向けに設計された完全クライアントサイドの超シンプルなお絵描きWebアプリ。登録不要、完全無料、サーバー送信ゼロで安心・安全。ワンクリックでPNG保存。",
+    "keywords": "お絵かき, 子供向けお絵かき, オンラインお絵描き, 魔法のお絵描きボード, キッズドロー"
+  },
+  "nav": {
+    "brand": "KidsDraw",
+    "tagline": "魔法のお絵かき",
+    "support": "応援",
+    "supportFull": "開発者を応援する",
+    "themeLight": "お絵かき用紙",
+    "themeDark": "ネオン黒板",
+    "toggleTheme": "テーマ切替",
+    "selectLang": "言語",
+    "privacyBadge": "100% 安全・安心プライバシー"
+  },
+  "tools": {
+    "draw": "描く",
+    "brush": "ブラシ",
+    "magicBrush": "にじいろマジック",
+    "glowBrush": "ネオンひかるペン",
+    "eraser": "けしごむ",
+    "size": "ふとさ",
+    "sizeSmall": "ほそい",
+    "sizeMedium": "ふつう",
+    "sizeLarge": "ふとい",
+    "sizeJumbo": "超ふとい",
+    "colorPicker": "他の色",
+    "undo": "もどす",
+    "redo": "やりなおす",
+    "clear": "ぜんぶ消す",
+    "clearTitle": "新しいお絵かきをはじめますか？",
+    "clearConfirm": "はい、消す！",
+    "clearCancel": "つづける",
+    "save": "絵をほぞん",
+    "saving": "ほぞん中...",
+    "downloadSuccess": "保存できました！",
+    "fullscreen": "ぜんめん表示",
+    "exitFullscreen": "もどる"
+  }
+}

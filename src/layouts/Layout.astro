@@ -1,0 +1,98 @@
+---
+import Navbar from '../components/Navbar.astro';
+import { getTranslations, getHreflangLinks, getLocalizedPath } from '../i18n/utils';
+import { SUPPORTED_LANGUAGES } from '../i18n/languages';
+import '../styles/global.css';
+
+interface Props {
+  currentLocale: string;
+}
+
+const { currentLocale } = Astro.props;
+const t = getTranslations(currentLocale);
+const canonicalUrl = `https://kids-draw.github.io${getLocalizedPath('/', currentLocale)}`;
+const hreflangs = getHreflangLinks('/');
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "KidsDraw",
+  "url": "https://kids-draw.github.io",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires HTML5 Canvas support",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": t.meta.description,
+  "inLanguage": SUPPORTED_LANGUAGES.map((l) => l.code),
+  "author": {
+    "@type": "Person",
+    "name": "Kishara Dilz",
+    "url": "https://buymeacoffee.com/kisharadilz"
+  }
+};
+---
+
+<!doctype html>
+<html lang={currentLocale} class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Technical SEO -->
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <meta name="keywords" content={t.meta.keywords} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Hreflang alternates for all 7 languages + x-default -->
+    {hreflangs.map((item) => (
+      <link rel="alternate" hreflang={item.lang} href={item.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href="https://kids-draw.github.io/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={t.meta.title} />
+    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:site_name" content="KidsDraw" />
+    <meta property="og:locale" content={currentLocale} />
+    <meta property="og:image" content="https://kids-draw.github.io/favicon.svg" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={t.meta.title} />
+    <meta name="twitter:description" content={t.meta.description} />
+    <meta name="twitter:image" content="https://kids-draw.github.io/favicon.svg" />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Anti-FOUC Theme Initialization -->
+    <script is:inline>
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </head>
+  <body class="h-full w-full flex flex-col bg-paper-light dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-neon_green selection:text-deep_ocean overflow-hidden">
+    <!-- Sticky Responsive Icon Navbar -->
+    <Navbar currentLocale={currentLocale} />
+    
+    <!-- Main Drawing Workspace -->
+    <main class="flex-1 flex flex-col w-full overflow-hidden">
+      <slot />
+    </main>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DrawBoard from '../../components/DrawBoard';
+import { getTranslations } from '../../i18n/utils';
+import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE } from '../../i18n/languages';
+
+export function getStaticPaths() {
+  return SUPPORTED_LANGUAGES
+    .filter((lang) => lang.code !== DEFAULT_LANGUAGE)
+    .map((lang) => ({
+      params: { lang: lang.code },
+    }));
+}
+
+const { lang } = Astro.params;
+const currentLocale = lang || 'en';
+const t = getTranslations(currentLocale);
+---
+
+<Layout currentLocale={currentLocale}>
+  <DrawBoard client:load translations={t.tools} currentLocale={currentLocale} />
+</Layout>

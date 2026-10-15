@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "title": "KidsDraw | Kostenlose Magische Maltrainingswand für Kinder",
+    "description": "Eine minimalistische, 100% clientseitige Web-App für Kinder. Ablenkungsfreie HTML5-Maltafel mit sofortigem PNG-Download, null Server-Uploads und voller Privatsphäre.",
+    "keywords": "Maltafel Kinder, online zeichnen Kinder, magische Maltafel, Mal-App kostenlos"
+  },
+  "nav": {
+    "brand": "KidsDraw",
+    "tagline": "Zaubertafel",
+    "support": "Fördern",
+    "supportFull": "Entwickler unterstützen",
+    "themeLight": "Papier-Modus",
+    "themeDark": "Leucht-Modus",
+    "toggleTheme": "Design wechseln",
+    "selectLang": "Sprache",
+    "privacyBadge": "100% Sicher & Privat"
+  },
+  "tools": {
+    "draw": "Malen",
+    "brush": "Pinsel",
+    "magicBrush": "Regenbogen-Magie",
+    "glowBrush": "Neon-Glanz",
+    "eraser": "Radierer",
+    "size": "Pinselgröße",
+    "sizeSmall": "Klein",
+    "sizeMedium": "Mittel",
+    "sizeLarge": "Groß",
+    "sizeJumbo": "Riesig",
+    "colorPicker": "Mehr Farben",
+    "undo": "Rückgängig",
+    "redo": "Wiederholen",
+    "clear": "Löschen",
+    "clearTitle": "Neues Bild starten?",
+    "clearConfirm": "Ja, Löschen!",
+    "clearCancel": "Weiter malen",
+    "save": "Bild speichern",
+    "saving": "Speichern...",
+    "downloadSuccess": "Auf deinem Gerät gespeichert!",
+    "fullscreen": "Vollbild",
+    "exitFullscreen": "Beenden"
+  }
+}

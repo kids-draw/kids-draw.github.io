@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "title": "KidsDraw | Free Online Magic Drawing Board",
+    "description": "An ultra-minimal, 100% client-side web application for kids. Distraction-free HTML5 canvas drawing board with instant PNG downloads, zero server uploads, and total privacy.",
+    "keywords": "kids drawing board, online canvas for kids, magic drawing, free drawing app, private drawing"
+  },
+  "nav": {
+    "brand": "KidsDraw",
+    "tagline": "Magic Board",
+    "support": "Support",
+    "supportFull": "Support Developer",
+    "themeLight": "Paper Mode",
+    "themeDark": "Glow Art Mode",
+    "toggleTheme": "Toggle Theme",
+    "selectLang": "Language",
+    "privacyBadge": "100% Private & Safe"
+  },
+  "tools": {
+    "draw": "Draw",
+    "brush": "Brush",
+    "magicBrush": "Rainbow Magic",
+    "glowBrush": "Glow Art",
+    "eraser": "Eraser",
+    "size": "Brush Size",
+    "sizeSmall": "Small",
+    "sizeMedium": "Medium",
+    "sizeLarge": "Large",
+    "sizeJumbo": "Jumbo",
+    "colorPicker": "More Colors",
+    "undo": "Undo",
+    "redo": "Redo",
+    "clear": "Clear",
+    "clearTitle": "Start a new drawing?",
+    "clearConfirm": "Yes, Clear!",
+    "clearCancel": "Keep Drawing",
+    "save": "Save Drawing",
+    "saving": "Saving...",
+    "downloadSuccess": "Saved to your device!",
+    "fullscreen": "Full Screen",
+    "exitFullscreen": "Exit Full Screen"
+  }
+}

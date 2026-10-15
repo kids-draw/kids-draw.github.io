@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "title": "KidsDraw | Pizarra Mágica de Dibujo Gratis para Niños",
+    "description": "Una aplicación web ultra minimalista y 100% del lado del cliente para niños. Pizarra de dibujo mágica HTML5 con descargas instantáneas en PNG, sin subidas al servidor y total privacidad.",
+    "keywords": "pizarra de dibujo niños, dibujar online, dibujo infantil, pizarra mágica, dibujo gratis niños"
+  },
+  "nav": {
+    "brand": "KidsDraw",
+    "tagline": "Pizarra Mágica",
+    "support": "Apoyar",
+    "supportFull": "Apoyar al Creador",
+    "themeLight": "Modo Papel",
+    "themeDark": "Modo Neón",
+    "toggleTheme": "Cambiar Tema",
+    "selectLang": "Idioma",
+    "privacyBadge": "100% Privado y Seguro"
+  },
+  "tools": {
+    "draw": "Dibujar",
+    "brush": "Pincel",
+    "magicBrush": "Arcoíris Mágico",
+    "glowBrush": "Brillo Neón",
+    "eraser": "Borrador",
+    "size": "Tamaño",
+    "sizeSmall": "Pequeño",
+    "sizeMedium": "Mediano",
+    "sizeLarge": "Grande",
+    "sizeJumbo": "Gigante",
+    "colorPicker": "Más Colores",
+    "undo": "Deshacer",
+    "redo": "Rehacer",
+    "clear": "Borrar Todo",
+    "clearTitle": "¿Empezar un nuevo dibujo?",
+    "clearConfirm": "¡Sí, Borrar!",
+    "clearCancel": "Seguir Dibujando",
+    "save": "Guardar Dibujo",
+    "saving": "Guardando...",
+    "downloadSuccess": "¡Guardado en tu dispositivo!",
+    "fullscreen": "Pantalla Completa",
+    "exitFullscreen": "Salir"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "title": "KidsDraw | Tableau de Dessin Magique Gratuit pour Enfants",
+    "description": "Une application web ultra-minimale 100% côté client pour enfants. Tableau à dessin HTML5 sans distraction avec téléchargement instantané en PNG, sans envoi sur serveur et confidentialité totale.",
+    "keywords": "tableau dessin enfants, dessiner en ligne, ardoise magique, coloriage enfant gratuit"
+  },
+  "nav": {
+    "brand": "KidsDraw",
+    "tagline": "Ardoise Magique",
+    "support": "Soutenir",
+    "supportFull": "Soutenir le Créateur",
+    "themeLight": "Mode Papier",
+    "themeDark": "Mode Néon",
+    "toggleTheme": "Changer de Thème",
+    "selectLang": "Langue",
+    "privacyBadge": "100% Privé et Sûr"
+  },
+  "tools": {
+    "draw": "Dessiner",
+    "brush": "Pinceau",
+    "magicBrush": "Magie Arc-en-ciel",
+    "glowBrush": "Néon Lumineux",
+    "eraser": "Gomme",
+    "size": "Taille",
+    "sizeSmall": "Petit",
+    "sizeMedium": "Moyen",
+    "sizeLarge": "Grand",
+    "sizeJumbo": "Géant",
+    "colorPicker": "Plus de Couleurs",
+    "undo": "Annuler",
+    "redo": "Refaire",
+    "clear": "Effacer",
+    "clearTitle": "Commencer un nouveau dessin ?",
+    "clearConfirm": "Oui, Effacer !",
+    "clearCancel": "Continuer",
+    "save": "Enregistrer",
+    "saving": "Enregistrement...",
+    "downloadSuccess": "Enregistré sur votre appareil !",
+    "fullscreen": "Plein Écran",
+    "exitFullscreen": "Quitter"
+  }
+}
