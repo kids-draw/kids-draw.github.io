@@ -4,6 +4,7 @@ import {
   Pencil,
   Pen,
   Highlighter,
+  Brush as CrayonIcon,
   Paintbrush, 
   Sparkles, 
   Eraser, 
@@ -23,6 +24,7 @@ interface ToolTranslations {
   pencil: string;
   pen: string;
   platignum: string;
+  pastel: string;
   brush: string;
   magicBrush: string;
   glowBrush: string;
@@ -76,7 +78,7 @@ const BRUSH_SIZES = [
   { size: 48, dotSize: 30, labelKey: 'sizeJumbo' as const },
 ];
 
-type ToolType = 'pencil' | 'pen' | 'platignum' | 'brush' | 'magic' | 'glow' | 'eraser';
+type ToolType = 'brush' | 'magic' | 'glow' | 'pen' | 'pencil' | 'platignum' | 'pastel' | 'eraser';
 
 export default function DrawBoard({ translations: t }: DrawBoardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -290,7 +292,12 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
       ctx.strokeStyle = currentColor;
       ctx.globalAlpha = 1.0;
       ctx.lineWidth = scaledSize;
-      ctx.shadowBlur = scaledSize * 1.4;
+    } else if (activeTool === 'pastel') {
+      // Oil Pastel / Crayon (creamy, waxy texture with soft edges)
+      ctx.strokeStyle = currentColor;
+      ctx.globalAlpha = 0.86;
+      ctx.lineWidth = Math.max(5, scaledSize * 1.25);
+      ctx.shadowBlur = Math.max(1, scaledSize * 0.15);
       ctx.shadowColor = currentColor;
     } else {
       // Standard Vibrant Brush
@@ -587,53 +594,10 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
           {/* Top Row: Primary Tools, Brush Sizes, Clear, and Prominent Save CTA */}
           <div className="flex items-center justify-between gap-1.5 sm:gap-3 flex-wrap">
             
-            {/* Tool Selector: Pencil, Pen, Platignum, Brush, Magic, Glow, Eraser */}
+            {/* Tool Selector: Previous Tools (Start) -> Pen, Pencil, Platignum, Pastel (End) -> Eraser */}
             <div className="flex items-center gap-1 sm:gap-1.5 bg-paper-warm/60 dark:bg-slate-800/80 p-1 rounded-xl sm:rounded-2xl border border-deep_ocean/10 dark:border-slate-700 overflow-x-auto scrollbar-none max-w-full">
-              {/* Pencil */}
-              <button
-                type="button"
-                onClick={() => setActiveTool('pencil')}
-                title={t.pencil}
-                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
-                  activeTool === 'pencil'
-                    ? 'bg-slate-700 text-white shadow-md scale-105'
-                    : 'text-deep_ocean dark:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-700'
-                }`}
-              >
-                <Pencil className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
-                <span className="hidden lg:inline">{t.pencil}</span>
-              </button>
-
-              {/* Pen */}
-              <button
-                type="button"
-                onClick={() => setActiveTool('pen')}
-                title={t.pen}
-                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
-                  activeTool === 'pen'
-                    ? 'bg-deep_ocean text-white shadow-md scale-105'
-                    : 'text-deep_ocean dark:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-700'
-                }`}
-              >
-                <Pen className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
-                <span className="hidden lg:inline">{t.pen}</span>
-              </button>
-
-              {/* Platignum (Felt-tip Marker) */}
-              <button
-                type="button"
-                onClick={() => setActiveTool('platignum')}
-                title={t.platignum}
-                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
-                  activeTool === 'platignum'
-                    ? 'bg-emerald-600 text-white shadow-md scale-105'
-                    : 'text-deep_ocean dark:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-700'
-                }`}
-              >
-                <Highlighter className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
-                <span className="hidden lg:inline">{t.platignum}</span>
-              </button>
-
+              
+              {/* START SIDE: PREVIOUS ORIGINAL TOOLS */}
               {/* Regular Brush */}
               <button
                 type="button"
@@ -678,6 +642,73 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
                 <SunMedium className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
                 <span className="hidden lg:inline">{t.glowBrush}</span>
               </button>
+
+              {/* Subtle Group Divider */}
+              <div className="w-[1.5px] h-5 bg-deep_ocean/20 dark:bg-slate-700 mx-0.5 rounded-full flex-shrink-0" aria-hidden="true" />
+
+              {/* END SIDE: PEN, PENCIL, PLATIGNUM, PASTEL */}
+              {/* Pen */}
+              <button
+                type="button"
+                onClick={() => setActiveTool('pen')}
+                title={t.pen}
+                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
+                  activeTool === 'pen'
+                    ? 'bg-deep_ocean text-white shadow-md scale-105'
+                    : 'text-deep_ocean dark:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-700'
+                }`}
+              >
+                <Pen className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
+                <span className="hidden lg:inline">{t.pen}</span>
+              </button>
+
+              {/* Pencil */}
+              <button
+                type="button"
+                onClick={() => setActiveTool('pencil')}
+                title={t.pencil}
+                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
+                  activeTool === 'pencil'
+                    ? 'bg-slate-700 text-white shadow-md scale-105'
+                    : 'text-deep_ocean dark:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-700'
+                }`}
+              >
+                <Pencil className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
+                <span className="hidden lg:inline">{t.pencil}</span>
+              </button>
+
+              {/* Platignum (Felt-tip Marker) */}
+              <button
+                type="button"
+                onClick={() => setActiveTool('platignum')}
+                title={t.platignum}
+                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
+                  activeTool === 'platignum'
+                    ? 'bg-emerald-600 text-white shadow-md scale-105'
+                    : 'text-deep_ocean dark:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-700'
+                }`}
+              >
+                <Highlighter className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
+                <span className="hidden lg:inline">{t.platignum}</span>
+              </button>
+
+              {/* Pastel (Oil Pastel / Crayon) */}
+              <button
+                type="button"
+                onClick={() => setActiveTool('pastel')}
+                title={t.pastel}
+                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
+                  activeTool === 'pastel'
+                    ? 'bg-amber-500 text-white shadow-md scale-105'
+                    : 'text-deep_ocean dark:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-700'
+                }`}
+              >
+                <CrayonIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
+                <span className="hidden lg:inline">{t.pastel}</span>
+              </button>
+
+              {/* Subtle Group Divider */}
+              <div className="w-[1.5px] h-5 bg-deep_ocean/20 dark:bg-slate-700 mx-0.5 rounded-full flex-shrink-0" aria-hidden="true" />
 
               {/* Eraser */}
               <button

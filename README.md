@@ -11,12 +11,17 @@
 
 - 🖍️ **Magic Canvas**: Responsive HTML5 Canvas with pointer events supporting both mouse, stylus, and touch gestures. Automatically prevents screen scrolling while drawing.
 - ✏️ **Diverse Drawing Instruments**:
-  - **Pencil**: Natural semi-transparent graphite texture for realistic sketching and soft shading.
-  - **Pen**: Crisp, fluid, solid ink lines for clean writing and precise drawing.
-  - **Platignum**: Saturated felt-tip coloring marker with bold fiber-tip ink (inspired by classic school coloring pens).
-  - **Brush**: Smooth, rich paint strokes.
-  - **Rainbow Magic**: Dynamic hue-cycling sparkle brush that kids love.
-  - **Neon Glow Art**: Luminous electric glow effect for blackboard drawings.
+  - **Start Side (Creative Brushes)**:
+    - **Brush**: Smooth, rich paint strokes.
+    - **Rainbow Magic**: Dynamic hue-cycling sparkle brush that kids love.
+    - **Neon Glow Art**: Luminous electric glow effect for blackboard drawings.
+  - **End Side (Pens, Pencils & Coloring Tools)**:
+    - **Pen**: Crisp, fluid, solid ink lines for clean writing and precise drawing.
+    - **Pencil**: Natural semi-transparent graphite texture for realistic sketching and soft shading.
+    - **Platignum**: Saturated felt-tip coloring marker with bold fiber-tip ink (inspired by classic school coloring pens).
+    - **Pastel**: Creamy oil pastel / crayon texture with soft wax edges and rich coverage.
+  - **Correction**:
+    - **Eraser**: Precision eraser to wipe away strokes.
 - 🧽 **Kid-Friendly Tools**: Oversized brush size selectors (Small, Medium, Large, Jumbo), soft eraser, undo/redo, and accidental-clear protection.
 - 🎨 **Design System Color Palette**: Preloaded with `#ADED92` (Soft Mint), `#46EC67` (Neon Green), `#12EDAB` (Aqua Cyan), `#1E7D94` (Deep Ocean), plus vibrant child-friendly colors and a native color wheel.
 - 💾 **Instant Client-Side PNG Export**: Saves artwork directly to the device with a celebratory confetti blast—zero data sent to servers!
