@@ -527,9 +527,12 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
             aria-hidden="true"
           />
 
-          {/* HTML5 Canvas Element */}
+          {/* HTML5 Canvas Element with Accessible Role */}
           <canvas
             ref={canvasRef}
+            role="img"
+            aria-label="Kids magic drawing board interactive canvas"
+            tabIndex={0}
             className="absolute inset-0 w-full h-full touch-none block"
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
@@ -595,7 +598,7 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
           <div className="flex items-center justify-between gap-1.5 sm:gap-3 flex-wrap">
             
             {/* Tool Selector: Previous Tools (Start) -> Pen, Pencil, Platignum, Pastel (End) -> Eraser */}
-            <div className="flex items-center gap-1 sm:gap-1.5 bg-paper-warm/60 dark:bg-slate-800/80 p-1 rounded-xl sm:rounded-2xl border border-deep_ocean/10 dark:border-slate-700 overflow-x-auto scrollbar-none max-w-full">
+            <div role="toolbar" aria-label="Drawing Instruments" class="flex items-center gap-1 sm:gap-1.5 bg-paper-warm/60 dark:bg-slate-800/80 p-1 rounded-xl sm:rounded-2xl border border-deep_ocean/10 dark:border-slate-700 overflow-x-auto scrollbar-none max-w-full">
               
               {/* START SIDE: PREVIOUS ORIGINAL TOOLS */}
               {/* Regular Brush */}
@@ -603,6 +606,7 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
                 type="button"
                 onClick={() => setActiveTool('brush')}
                 title={t.brush}
+                aria-label={t.brush}
                 className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
                   activeTool === 'brush'
                     ? 'bg-blue-600 text-white shadow-md scale-105'
@@ -618,6 +622,7 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
                 type="button"
                 onClick={() => setActiveTool('magic')}
                 title={t.magicBrush}
+                aria-label={t.magicBrush}
                 className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
                   activeTool === 'magic'
                     ? 'bg-gradient-to-r from-pink-500 via-yellow-400 to-cyan-400 text-white shadow-md scale-105'
@@ -633,6 +638,7 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
                 type="button"
                 onClick={() => setActiveTool('glow')}
                 title={t.glowBrush}
+                aria-label={t.glowBrush}
                 className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
                   activeTool === 'glow'
                     ? 'bg-gradient-to-r from-neon_green to-aqua_cyan text-deep_ocean font-extrabold shadow-md scale-105'
@@ -652,6 +658,7 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
                 type="button"
                 onClick={() => setActiveTool('pen')}
                 title={t.pen}
+                aria-label={t.pen}
                 className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
                   activeTool === 'pen'
                     ? 'bg-deep_ocean text-white shadow-md scale-105'
@@ -667,6 +674,7 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
                 type="button"
                 onClick={() => setActiveTool('pencil')}
                 title={t.pencil}
+                aria-label={t.pencil}
                 className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
                   activeTool === 'pencil'
                     ? 'bg-slate-700 text-white shadow-md scale-105'
@@ -682,6 +690,7 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
                 type="button"
                 onClick={() => setActiveTool('platignum')}
                 title={t.platignum}
+                aria-label={t.platignum}
                 className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
                   activeTool === 'platignum'
                     ? 'bg-emerald-600 text-white shadow-md scale-105'
@@ -697,6 +706,7 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
                 type="button"
                 onClick={() => setActiveTool('pastel')}
                 title={t.pastel}
+                aria-label={t.pastel}
                 className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
                   activeTool === 'pastel'
                     ? 'bg-amber-500 text-white shadow-md scale-105'
@@ -715,6 +725,7 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
                 type="button"
                 onClick={() => setActiveTool('eraser')}
                 title={t.eraser}
+                aria-label={t.eraser}
                 className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer flex-shrink-0 ${
                   activeTool === 'eraser'
                     ? 'bg-pink-500 text-white shadow-md scale-105'
@@ -727,13 +738,15 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
             </div>
 
             {/* Brush Size Selector Dots */}
-            <div className="flex items-center gap-1 sm:gap-2 bg-paper-warm/60 dark:bg-slate-800/80 px-2 sm:px-3 py-1.5 rounded-xl sm:rounded-2xl border border-deep_ocean/10 dark:border-slate-700">
+            <div role="radiogroup" aria-label={t.size} className="flex items-center gap-1 sm:gap-2 bg-paper-warm/60 dark:bg-slate-800/80 px-2 sm:px-3 py-1.5 rounded-xl sm:rounded-2xl border border-deep_ocean/10 dark:border-slate-700">
               {BRUSH_SIZES.map((item) => {
                 const isSelected = brushSize === item.size;
                 return (
                   <button
                     key={item.size}
                     type="button"
+                    role="radio"
+                    aria-checked={isSelected}
                     onClick={() => setBrushSize(item.size)}
                     title={t[item.labelKey]}
                     aria-label={t[item.labelKey]}
@@ -757,6 +770,7 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
               type="button"
               onClick={() => setShowClearConfirm(true)}
               title={t.clear}
+              aria-label={t.clear}
               className="h-9 sm:h-10 px-2.5 sm:px-3 rounded-xl sm:rounded-2xl bg-red-50 hover:bg-red-100 dark:bg-red-950/40 dark:hover:bg-red-900/60 text-red-600 dark:text-red-400 font-bold text-xs sm:text-sm flex items-center gap-1 border border-red-200 dark:border-red-800/50 transition-all cursor-pointer active:scale-95"
             >
               <Trash2 className="w-4 h-4 stroke-[2.5]" />
@@ -768,6 +782,7 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
               type="button"
               onClick={handleExportPNG}
               title={t.save}
+              aria-label={t.save}
               className="h-9 sm:h-10 px-3 sm:px-5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-neon_green via-aqua_cyan to-soft_mint text-deep_ocean font-extrabold text-xs sm:text-sm flex items-center gap-1.5 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all border-2 border-deep_ocean/30 dark:border-neon_green/50 cursor-pointer ml-auto"
             >
               <Download className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[3]" />
@@ -776,13 +791,15 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
           </div>
 
           {/* Bottom Row: Color Swatches Palette */}
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto py-1 scrollbar-none">
+          <div role="radiogroup" aria-label="Color Palette" className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto py-1 scrollbar-none">
             {PRESET_COLORS.map((c) => {
               const isSelected = currentColor.toLowerCase() === c.hex.toLowerCase() && activeTool !== 'eraser' && activeTool !== 'magic';
               return (
                 <button
                   key={c.hex}
                   type="button"
+                  role="radio"
+                  aria-checked={isSelected}
                   onClick={() => {
                     setCurrentColor(c.hex);
                     if (activeTool === 'eraser' || activeTool === 'magic') {
@@ -811,10 +828,12 @@ export default function DrawBoard({ translations: t }: DrawBoardProps) {
             <label
               className="relative flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-deep_ocean/30 dark:border-slate-600 flex items-center justify-center cursor-pointer bg-gradient-to-tr from-rose-400 via-amber-300 to-indigo-400 hover:scale-110 transition-transform"
               title={t.colorPicker}
+              aria-label={t.colorPicker}
             >
               <input
                 type="color"
                 value={customColor}
+                aria-label={t.colorPicker}
                 onChange={(e) => {
                   setCustomColor(e.target.value);
                   setCurrentColor(e.target.value);
