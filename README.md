@@ -4,7 +4,7 @@
 ### *Free, Ultra-Minimal, 100% Client-Side Magic Drawing Board for Kids*
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-kids--draw.github.io-12EDAB?style=for-the-badge&logo=googlechrome&logoColor=1E7D94)](https://kids-draw.github.io)
-[![Buy Me A Coffee](https://img.shields.io/badge/Support%20Developer-Buy%20Me%20A%20Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000000)](https://buymeacoffee.com/kisharadilz)
+[![Support on Ko-fi](https://img.shields.io/badge/Support%20Developer-Ko--fi-FF5E5B?style=for-the-badge&logo=kofi&logoColor=white)](https://ko-fi.com/kishara)
 [![License: MIT](https://img.shields.io/badge/License-MIT-46EC67?style=for-the-badge)](LICENSE)
 
 <br />
@@ -287,9 +287,9 @@ If you or your children enjoy creating with **KidsDraw**, please consider suppor
 
 <div align="center">
 
-[![Buy Me A Coffee](https://img.shields.io/badge/Support%20on-Buy%20Me%20A%20Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000000)](https://buymeacoffee.com/kisharadilz)
+[![Support on Ko-fi](https://img.shields.io/badge/Support%20on-Ko--fi-FF5E5B?style=for-the-badge&logo=kofi&logoColor=white)](https://ko-fi.com/kishara)
 
-**[buymeacoffee.com/kisharadilz](https://buymeacoffee.com/kisharadilz)**
+**[ko-fi.com/kishara](https://ko-fi.com/kishara)**
 
 *Created with ❤️ by **Kishara Dilz***
 
